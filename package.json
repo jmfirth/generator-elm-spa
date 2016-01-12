@@ -1,0 +1,31 @@
+{
+  "name": "generator-elm-spa",
+  "version": "0.0.1",
+  "description": "Generator for an Elm SPA project",
+  "license": "MIT",
+  "main": "generators/app/index.js",
+  "files": [
+    "generators"
+  ],
+  "repository": "https://github.com/jmfirth/generator-elm-spa",
+  "author": "Justin Firth <jmfirth@gmail.com>",
+  "contributors":[],
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "yeoman-generator",
+    "elm",
+    "elm-lang",
+    "spa"
+  ],
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "lodash": "^3.10.1",
+    "yeoman-generator": "^0.21.1",
+    "yosay": "^1.0.2"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}
