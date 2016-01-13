@@ -1,15 +1,15 @@
 {
-  "name": "<%= appName %>",
+  "name": "<%= hyphenAppName %>",
+  "description": "<%= appDescription %>",
   "version": "0.0.1",
-  "private": true,
+  "private": <%= private %>,
   "scripts": {
     "build": "gulp build && elm-make --yes src/elm/spa/App/App.elm --output=./dist/elm.js",
     "watch": "gulp watch",
     "server": "elm-reactor"
   },
   "browser": {
-    "fs": false,
-    "tls": false
+    "fs": false
   },
   "dependencies": {
     "babel-core": "^6.3.26"

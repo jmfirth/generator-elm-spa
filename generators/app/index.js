@@ -12,7 +12,11 @@ module.exports = yeoman.generators.Base.extend({
   initializing: function () {
     this.argument('name', { type: String, required: false });
     this.appName = this.name || path.basename(process.cwd()) || 'elm-spa';
+    this.appName = this.appName.replace(/\s+/g, '-').toLowerCase();
     this.appPath = this.env.options.appPath;
+    this.argument('description', {type: String, required: false});
+    this.appDescription = this.description || 'test';
+    this.private = true;
     this.version = "0.0.1";
   },
   prompting: function () {
@@ -29,6 +33,11 @@ module.exports = yeoman.generators.Base.extend({
       default: 'elm-spa',
       store: true
     }, {
+      name: 'appDescription',
+      message: 'Give me a short description of your app:',
+      default: '',
+      store: true
+    }, {
       type: "confirm",
       name: "private",
       message: "Do you want this app to be private?",
@@ -36,9 +45,18 @@ module.exports = yeoman.generators.Base.extend({
       store: true
     }];
 
+    var self = this;
     this.prompt(prompts, function (props) {
       this.answers = props;
-      // To access prompt answers later use this.answers.someOption;
+      self.appName = this.answers.appName;
+      self.appDescription = this.answers.appDescription;
+      self.private = this.answers.private;
+
+      self.ProperAppName = self.appName.replace(/\w*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1)})
+      self.camelAppName = self.appName.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
+      return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
+    }).replace(/\s+/g, '').replace(/-/g, '')
+      self.hyphenAppName = self.appName.replace(/\s+/g, '-').toLowerCase();
       done();
     }.bind(this));
   },
@@ -65,10 +83,16 @@ module.exports = yeoman.generators.Base.extend({
     this.log(yosay('Installing Dependencies'))
 
     var o = null
+
+    this.log(chalk.green('Installing npm dependencies...\n'))
     o = spawn('npm install')
     this.log(o.toString('utf8'))
+
+    this.log(chalk.green('Installing Elm dependencies...\n'))
     o = spawn('elm-package install -y')
     this.log(o.toString('utf8'))
+
+    this.log(chalk.green('Building project...\n'))
     o = spawn('gulp build')
     this.log(o.toString('utf8'))
   },
