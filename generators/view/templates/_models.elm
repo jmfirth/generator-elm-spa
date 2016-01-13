@@ -1,12 +1,12 @@
-module App.Views.Home.Models where
+module App.Views.<%= ProperName %>.Models (<%= ProperName %>View, empty<%= ProperName %>View) where
 
 
-type alias ViewModel =
+type alias <%= ProperName %>View =
   { message: String
   }
 
 
-emptyViewModel : ViewModel
-emptyViewModel =
+empty<%= ProperName %>View : <%= ProperName %>View
+empty<%= ProperName %>View =
   { message = ""
   }

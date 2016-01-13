@@ -1,15 +1,15 @@
-module App.Views.Home.Update (update) where
+module App.Views.<%= ProperName %>.Update (update) where
 
 import Debug
 
 import Effects exposing (Effects)
 
-import App.Views.Home.Actions as Actions exposing (Action)
-import App.Views.Home.Models exposing (ViewModel)
+import App.Views.<%= ProperName %>.Actions as Actions exposing (Action)
+import App.Views.<%= ProperName %>.Models exposing (<%= ProperName %>View)
 
 
-update : Action -> ViewModel -> (ViewModel, Effects Action)
-update action model =
-  case Debug.watch "App.Views.Home.Action" action of
+update : Action -> <%= ProperName %>View -> (<%= ProperName %>View, Effects Action)
+update action <%= camelName %> =
+  case Debug.watch "App.Views.<%= ProperName %>.Action" action of
     _ ->
-      (model, Effects.none)
+      (<%= camelName %>, Effects.none)
