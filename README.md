@@ -98,25 +98,25 @@ node_modules\                     - NPM module folder
 src\                              - Source folder
    elm\                           - Elm source folder
       native\                     - Custom native Elm module source folder
-        Native\                   - Native modules are built and output here
-        Hello.elm                 - Custom Elm wrapper for the Hello native module example
+         Native\                  - Native modules are built and output here
+         Hello.elm                - Custom Elm wrapper for the Hello native module example
       spa\                        - Elm SPA source folder
-        App\                      - Main App folder
-          Components\             - SPA components folder
-             Bootstrap.elm        - Example Bootstrap components (smart and dumb)
-             Counter.elm          - Example Counter component (smart)
-          Views\                  - SPA views folder
-            Counter\              - Counter view example
+         App\                     - Main App folder
+            Components\           - SPA components folder
+               Bootstrap.elm      - Example Bootstrap components (smart and dumb)
+               Counter.elm        - Example Counter component (smart)
+         Views\                   - SPA views folder
+            Counter\              - Counter view example folder
                Actions.elm        - Counter view actions
                Models.elm         - Counter view models
                Update.elm         - Counter view update method
                View.elm           - Counter view's view
             Error\                - Error views
-               Empty\             - Empty view
+               Empty\             - Empty view folder
                   View.elm        - Empty view's view
-               NotFound\          - NotFound view
+               NotFound\          - NotFound view folder
                   View.elm        - NotFound view's view
-            Home\                 - Home view example
+            Home\                 - Home view example folder
                Actions.elm        - Home view actions
                Models.elm         - Home view models
                Update.elm         - Home view update methods
@@ -128,7 +128,7 @@ src\                              - Source folder
           Update.elm              - App update method
           View.elm                - App's main view
    html\                          - HTML source folder
-    index.html                    - Index template for distribution
+      index.html                  - Index template for distribution
    js\                            - JavaScript source folder
       hello\                      - Hello example native module
          hello.js                 - Hello example's functional source
