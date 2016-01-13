@@ -62,7 +62,7 @@ $ yo elm-spa:view MyView
 and components:
 
 ```sh
-$ yo elm-spa:components MyComponent
+$ yo elm-spa:component MyComponent
 ```
 
 ## Tooling
