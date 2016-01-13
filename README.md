@@ -39,13 +39,15 @@ Current distribution build does not correctly feed environment-specific configur
 $ npm install -g yo
 ```
 
-To install generator-elmlang from npm, run:
+To install `generator-elm-spa` run:
 
 ```sh
-$ npm install -g generator-elm-spa
+$ npm install -g jmfirth/generator-elm-spa
 ```
 
-Finally, initiate the generator:
+(Will release to npm once the environment-specific configuration issue is solved)
+
+Then start the generator:
 
 ```sh
 $ yo elm-spa
