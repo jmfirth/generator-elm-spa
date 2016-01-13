@@ -1,29 +1,30 @@
-module App.Components.<%= name %>where
+module App.Components.<%= ProperName %> where
 
 import Signal exposing (Address)
 import Effects exposing (Effects)
 
 import Html exposing (Html, div, text)
+import Html.Attributes exposing (class)
 
 
-type alias <%= name %> = { value: Int }
+type alias <%= ProperName %> = { value: Int }
 
 
-empty<%= name %> : <%= name %>
-empty<%= name %> = { value = 0 }
+empty<%= ProperName %> : <%= ProperName %>
+empty<%= ProperName %> = { value = 0 }
 
 
 type Action
-  | NoOp
+  = NoOp
 
 
-<%= name %> : Address Action -> <%= name %> -> Html
-<%= name %> address <%= name %> =
+<%= camelName %> : Address Action -> <%= ProperName %> -> Html
+<%= camelName %> address <%= camelName %> =
   div [ class "component" ] [ text "Component" ]
 
 
-update : Action -> <%= name %> -> (<%= name %>, Effects Action)
-update action <%= name %> =
-  case Debug.watch "App.Components.<%= name %>.Action" action of
+update : Action -> <%= ProperName %> -> (<%= ProperName %>, Effects Action)
+update action <%= camelName %> =
+  case Debug.watch "App.Components.<%= ProperName %>.Action" action of
     _ ->
-      (counter, Effects.none)
+      (<%= camelName %>, Effects.none)
