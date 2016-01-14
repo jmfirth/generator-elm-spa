@@ -2,13 +2,13 @@ module App.View (view) where
 
 import Signal exposing (Address)
 
-import Html exposing (Html, div, node, text)
+import Html exposing (Html, div, node, span, text)
 import Html.Attributes exposing (class, rel, href, style, src)
 import Hop
 
 import App.Actions as Actions exposing (Action)
 import App.Models exposing (Site)
-import App.Components.Bootstrap exposing (navbar)
+import App.Components.Navbar exposing (navbar)
 import App.Views.Home.View as HomeView
 import App.Views.Counter.View as CounterView
 import App.Views.Error.NotFound.View as NotFoundView
@@ -29,15 +29,21 @@ navLinks view payload =
 
 sitePage : Address Action -> Site -> Html -> Html
 sitePage address site content =
-  div
-    [ class "site" ]
-    [ stylesheet "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-    , stylesheet "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
-    , stylesheet "/dist/main.css"
-    , navbar address "Elm SPA Boilerplate" (navLinks site.view site.routerPayload)
-    , div [ style [("margin-top", "49px")] ] []
-    , content
-    ]
+  let
+    brand = "Elm SPA Boilerplate"
+  in
+    div
+      [ class "site" ]
+      [ stylesheet "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      , stylesheet "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+      , stylesheet "/dist/main.css"
+      , navbar
+          address
+          (div [] [ span [] [ text brand ] ])
+          (navLinks site.view site.routerPayload)
+      , div [ style [("margin-top", "49px")] ] []
+      , content
+      ]
 
 
 pageView : Address Action -> Site -> Html

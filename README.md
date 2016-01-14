@@ -103,8 +103,9 @@ src\                              - Source folder
       spa\                        - Elm SPA source folder
          App\                     - Main App folder
             Components\           - SPA components folder
-               Bootstrap.elm      - Example Bootstrap components (smart and dumb)
+               Bootstrap.elm      - Example Bootstrap components (dumb)
                Counter.elm        - Example Counter component (smart)
+               Navbar.elm         - Example Navbar component (smart)
          Views\                   - SPA views folder
             Counter\              - Counter view example folder
                Actions.elm        - Counter view actions
