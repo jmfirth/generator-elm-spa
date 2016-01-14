@@ -152,7 +152,7 @@ gulp.task('html', function() {
     .pipe(gulp.dest('dist/'))
 })
 
-gulp.task('elm', function(callback) {
+gulp.task('elm', ['webpack'], function(callback) {
   var cmd = 'elm-make --yes src/elm/spa/App/App.elm --output=./dist/app.js'
   runCommand(cmd,(err, stderr, stdout) => {
     if (err) {
@@ -171,7 +171,7 @@ gulp.task('elm', function(callback) {
 })
 
 // Prod build task
-gulp.task('build', ['elm', 'html', 'webpack'], function(callback) { callback() })
+gulp.task('build', ['elm', 'html'], function(callback) { callback() })
 
 // Dev watch task
 gulp.task('watch', ['build'], function(callback) {
