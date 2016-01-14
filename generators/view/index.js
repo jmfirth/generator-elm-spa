@@ -17,9 +17,9 @@ module.exports = yeoman.generators.Base.extend({
     this.hyphenName = this.camelName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
   },
   writing: function () {
-    this.template('_actions.elm', 'src/elm/spa/App/Views/' + this.ProperName + '/actions.elm')
-    this.template('_models.elm', 'src/elm/spa/App/Views/' + this.ProperName + '/models.elm')
-    this.template('_update.elm', 'src/elm/spa/App/Views/' + this.ProperName + '/update.elm')
-    this.template('_view.elm', 'src/elm/spa/App/Views/' + this.ProperName + '/view.elm')
+    this.template('_actions.elm', 'src/elm/spa/App/Views/' + this.ProperName + '/Actions.elm')
+    this.template('_models.elm', 'src/elm/spa/App/Views/' + this.ProperName + '/Models.elm')
+    this.template('_update.elm', 'src/elm/spa/App/Views/' + this.ProperName + '/Update.elm')
+    this.template('_view.elm', 'src/elm/spa/App/Views/' + this.ProperName + '/View.elm')
   }
 });
