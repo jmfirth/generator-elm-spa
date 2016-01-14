@@ -13,7 +13,7 @@ import App.Actions as Actions exposing (Action)
 navbar : Address Action -> String -> List (String, String, Bool) -> Html
 navbar address brand links =
   nav [ class "navbar navbar-inverse navbar-fixed-top" ]
-    [ div [ class "container" ]
+    [ container True
       [ div [ class "navbar-header" ]
         [ button [ type' "button", class "navbar-toggle collapsed" ]
           [ span [ class "sr-only" ] [ text "Toggle navigation" ]
