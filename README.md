@@ -45,8 +45,6 @@ To install `generator-elm-spa` run:
 $ npm install -g jmfirth/generator-elm-spa
 ```
 
-(Will release to npm once the environment-specific configuration issue is solved)
-
 Then start the generator:
 
 ```sh
