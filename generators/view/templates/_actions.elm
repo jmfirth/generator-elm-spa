@@ -1,4 +1,4 @@
-module App.Views.<%= ProperName %>.Actions (Action) where
+module App.Views.<%= ProperName %>.Actions where
 
 type Action
   = NoOp
