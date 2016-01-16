@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "private": <%= private %>,
   "scripts": {
-    "build": "gulp build && elm-make --yes src/elm/spa/App/App.elm --output=./dist/elm.js",
+    "build": "gulp build",
     "watch": "gulp watch",
     "server": "elm-reactor"
   },
