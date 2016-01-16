@@ -21,14 +21,14 @@
 
 **View sub-generator**
 
-- [x] Generates separate Actions, Models, Updates, and View source files
-- [x] Generated source placed in `src\elm\spa\App\Views` in it's own subfolder
+- [x] Generates separate source files
+- [x] Generated source placed in `src/elm/spa/App/Views` in it's own subfolder
 - [x] Generated View compiles
 
 **Component sub-generator**
 
-- [x] Generates a single source file containing Actions, Models, Updates, and View
-- [x] Generated source placed in `src\elm\spa\App\Components`
+- [x] Generates a single source file
+- [x] Generated source placed in `src/elm/spa/App/Components`
 - [x] Generated Component compiles
 
 ## Getting Started
@@ -63,12 +63,17 @@ In addition to the base SPA scaffolding, this generator also scaffolds views:
 
 ```sh
 $ yo elm-spa:view MyView
+   create src/elm/spa/App/Views/MyView/Actions.elm
+   create src/elm/spa/App/Views/MyView/Models.elm
+   create src/elm/spa/App/Views/MyView/Update.elm
+   create src/elm/spa/App/Views/MyView/View.elm
 ```
 
 and components:
 
 ```sh
 $ yo elm-spa:component MyComponent
+   create src/elm/spa/App/Components/MyComponent.elm
 ```
 
 ## Tooling
@@ -94,33 +99,33 @@ $ npm run server
 ## SPA Structure
 
 ```
-dev\                              - development build output folder
-dist\                             - distribution build output folder
-elm-stuff\                        - Elm package and build folder
-node_modules\                     - NPM module folder
-src\                              - Source folder
-   elm\                           - Elm source folder
-      native\                     - Custom native Elm module source folder
-         Native\                  - Native modules are built and output here
+dev/                              - development build output folder
+dist/                             - distribution build output folder
+elm-stuff/                        - Elm package and build folder
+node_modules/                     - NPM module folder
+src/                              - Source folder
+   elm/                           - Elm source folder
+      native/                     - Custom native Elm module source folder
+         Native/                  - Native modules are built and output here
          Hello.elm                - Custom Elm wrapper for the Hello native module example
-      spa\                        - Elm SPA source folder
-         App\                     - Main App folder
-            Components\           - SPA components folder
+      spa/                        - Elm SPA source folder
+         App/                     - Main App folder
+            Components/           - SPA components folder
                Bootstrap.elm      - Example Bootstrap components (dumb)
                Counter.elm        - Example Counter component (smart)
                Navbar.elm         - Example Navbar component (smart)
-         Views\                   - SPA views folder
-            Counter\              - Counter view example folder
+         Views/                   - SPA views folder
+            Counter/              - Counter view example folder
                Actions.elm        - Counter view actions
                Models.elm         - Counter view models
                Update.elm         - Counter view update method
                View.elm           - Counter view's view
-            Error\                - Error views
-               Empty\             - Empty view folder
+            Error/                - Error views
+               Empty/             - Empty view folder
                   View.elm        - Empty view's view
-               NotFound\          - NotFound view folder
+               NotFound/          - NotFound view folder
                   View.elm        - NotFound view's view
-            Home\                 - Home view example folder
+            Home/                 - Home view example folder
                Actions.elm        - Home view actions
                Models.elm         - Home view models
                Update.elm         - Home view update methods
@@ -131,14 +136,14 @@ src\                              - Source folder
           Router.elm              - App router
           Update.elm              - App update method
           View.elm                - App's main view
-   html\                          - HTML source folder
+   html/                          - HTML source folder
       index.dev.html              - Index template for development build
       index.dist.html             - Index template for distribution build
-   js\                            - JavaScript source folder
-      hello\                      - Hello example native module
+   js/                            - JavaScript source folder
+      hello/                      - Hello example native module
          hello.js                 - Hello example's functional source
          index.js                 - Hello example's native JavaScript wrapper for Elm
-   pcss\                          - PostCSS source
+   pcss/                          - PostCSS source
       main.pcss                   - Style entrypoint
       _elm-reactor.pcss           - Override styles for `elm-reactor` overlay
 .babelrc                          - Babel 6 configuration
