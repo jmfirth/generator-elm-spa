@@ -1,6 +1,6 @@
 {
   "name": "generator-elm-spa",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A Yeoman generator for single-page applications using the Elm language.",
   "license": "MIT",
   "main": "generators/app/index.js",

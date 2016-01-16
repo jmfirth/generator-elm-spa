@@ -2,7 +2,7 @@
 
 >  A [`Yeoman`](http://yeoman.io) generator for single-page applications using the [`Elm`](http://elm-lang.org/) language.
 
- This generator scaffolds a single-page application (SPA) for [`Elm`](http://elm-lang.org/) following the best practices outlined in [The Elm Architecture](https://github.com/evancz/elm-architecture-tutorial/) guide while leveraging the fantastic [`Hop`](http://package.elm-lang.org/packages/sporto/hop/latest) router.  This generator features sub-generators to quickly scaffold additional Views and Components.  In addition, it provides modern developer and release tooling, including: [native module](https://github.com/NoRedInk/take-home/wiki/Writing-Native) development using [`Babel`](https://babeljs.io/) and [`Node.js`](https://nodejs.org) libraries via [`Webpack`](https://webpack.github.io/), automatic recompilation via [`Gulp`](http://gulpjs.com/), modern debugging via [`elm-reactor`](https://github.com/elm-lang/elm-reactor), and separate development and distribution builds.
+ This generator scaffolds a single-page application (SPA) for [`Elm`](http://elm-lang.org/) following the best practices outlined in [The Elm Architecture](https://github.com/evancz/elm-architecture-tutorial/) guide while leveraging the fantastic [`Hop`](http://package.elm-lang.org/packages/sporto/hop/latest) router.  This generator features sub-generators to quickly scaffold additional Views and Components.  In addition, it provides modern developer and release tooling, including: [native module](https://github.com/NoRedInk/take-home/wiki/Writing-Native) development using [`Babel`](https://babeljs.io/) and [`Node.js`](https://nodejs.org) libraries via [`Webpack`](https://webpack.github.io/), automatic recompilation via [`Gulp`](http://gulpjs.com/), live reloading of styles using [`gulp-livereload`](https://www.npmjs.com/package/gulp-livereload), modern debugging via [`elm-reactor`](https://github.com/elm-lang/elm-reactor), and separate development and distribution builds.
 
 ## Status
 
@@ -12,7 +12,7 @@
 - [x] Smart and dumb components
 - [x] [`Hop`](http://package.elm-lang.org/packages/sporto/hop/latest) router
 - [x] Native modules and tooling
-- [x] PostCSS/CSSNext style pre/postprocessor
+- [x] PostCSS/CSSNext style pre/postprocessor with live reloading
 - [x] SourceMaps for native modules
 - [x] Watch tooling for native modules and styles via [`Gulp`](http://gulpjs.com/) and [`Webpack`](https://webpack.github.io/)
 - [x] ~~Hot swapping~~ ([broken in 0.16]()) and time travel debugging via [`elm-reactor`](https://github.com/elm-lang/elm-reactor)
