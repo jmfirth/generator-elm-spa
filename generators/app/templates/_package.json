@@ -26,6 +26,7 @@
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "gulp": "^3.9.0",
+    "gulp-livereload": "^3.8.1",
     "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.7",

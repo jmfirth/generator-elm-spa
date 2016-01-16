@@ -2,6 +2,7 @@ var gulp = require('gulp')
 var gutil = require('gulp-util')
 var plumber = require('gulp-plumber')
 var rename = require('gulp-rename')
+var livereload = require('gulp-livereload')
 var webpack = require('webpack')
 var path = require('path')
 var Promise = require('promise')
@@ -18,14 +19,16 @@ var modules = [
       watch: ['./src/js/hello/**/*.js'],
       entry: ['./src/js/hello/index'],
       output: createWebpackOutput('/src/elm/native/Native/', 'Hello.js', '/src/elm/native/Native/'),
-      loaders: createWebpackJsLoaders('./src/js/hello/')
+      loaders: createWebpackJsLoaders('./src/js/hello/'),
+      watchActions: ['build:elm']
     },
     {
       name: 'PostCSS',
       watch: ['./src/pcss/**/*.pcss'],
       entry: ['./src/pcss/main.pcss'],
       output: createWebpackOutput('/dist/', 'main.css', '/'),
-      loaders: createWebpackCssLoaders('./src/pcss/')
+      loaders: createWebpackCssLoaders('./src/pcss/'),
+      watchActions: ['build:webpack']
     }
 ]
 
@@ -197,17 +200,17 @@ gulp.task('build:elm-copy', ['build:elm-make'], () => {
 
 gulp.task('build:elm', ['build:elm-make', 'build:elm-copy'])
 
-gulp.task('watch:html-dist', ['build:html-dist'], (callback) => {
+gulp.task('watch:html-dist', ['build:html-dist'], () => {
   return gulp.watch('src/html/index.dist.html', ['build:html-dist'])
 })
 
-gulp.task('watch:html-dev', ['build:html-dev'], (callback) => {
+gulp.task('watch:html-dev', ['build:html-dev'], () => {
   return gulp.watch('src/html/index.dev.html', ['build:html-dev'])
 })
 
 gulp.task('watch:html', ['watch:html-dist', 'watch:html-dev'])
 
-gulp.task('watch:elm', ['build:elm'], (callback) => {
+gulp.task('watch:elm', ['build:elm'], () => {
   return gulp.watch('src/elm/**/*.elm', ['build:elm'])
 })
 
@@ -216,13 +219,17 @@ gulp.task('watch:webpack', ['build:elm'], (callback) => {
   modules.reduce((previous, module) => {
     return previous.then(() => {
       var taskName = createTaskName(module.name)
-      return gulp.watch(module.watch, [taskName], [taskName])
+      return gulp.watch(module.watch, [module.watchActions])
     })
   }, Promise.resolve())
     .then(() => callback())
 })
 
-gulp.task('watch', ['watch:webpack', 'watch:elm', 'watch:html'])
+gulp.task('watch:livereload', () => {
+  livereload.listen()
+  return gulp.watch('dev/main.css').on('change', livereload.changed)
+})
 
-// Prod build task
+gulp.task('watch', ['watch:webpack', 'watch:elm', 'watch:html', 'watch:livereload'])
+
 gulp.task('build', ['build:webpack', 'build:elm', 'build:html'])
