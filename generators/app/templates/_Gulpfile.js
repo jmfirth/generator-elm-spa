@@ -1,10 +1,13 @@
 var gulp = require('gulp')
 var gutil = require('gulp-util')
+var plumber = require('gulp-plumber')
+var rename = require('gulp-rename')
 var webpack = require('webpack')
 var path = require('path')
 var Promise = require('promise')
 var atImport = require('postcss-import')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var chalk = require('chalk')
 
 
 var compilers = []
@@ -76,7 +79,7 @@ function createWebpackDevConfig(entry, output, loaders) {
     module: {
       loaders: loaders
     },
-    postcss: function (webpack) {
+    postcss: (webpack) => {
       return [
         require('postcss-import')({ addDependencyTo: webpack }),
         require('postcss-url')(),
@@ -127,14 +130,14 @@ var taskNames = []
 function createTaskName(moduleName) { return 'webpack:build -> ' + moduleName }
 
 // Build dev tasks
-modules.reduce(function(previous, module) {
-  return previous.then(function() {
+modules.reduce((previous, module) => {
+  return previous.then(() => {
     var taskName = createTaskName(module.name)
     taskNames.push(taskName)
-    gulp.task(taskName, function(cb) {
+    gulp.task(taskName, (cb) => {
       var config = createWebpackDevConfig(module.entry, module.output, module.loaders)
       var compiler = webpack(config)
-      compiler.run(function(err, stats) {
+      compiler.run((err, stats) => {
         if(err) throw new gutil.PluginError(taskName, err)
         gutil.log(taskName, stats.toString({ colors: true }))
         cb()
@@ -143,43 +146,83 @@ modules.reduce(function(previous, module) {
     })
   })
 }, Promise.resolve())
-  .then(function() { callback() })
+  .then(() => callback())
 
-gulp.task('webpack', taskNames)
+gulp.task('build:webpack-make', taskNames)
 
-gulp.task('html', function() {
-  return gulp.src('src/html/index.html')
+gulp.task('build:webpack-copy', ['build:webpack-make'], () => {
+  return gulp.src('dist/main.css')
+    .pipe(plumber())
+    .pipe(gulp.dest('dev/'))
+})
+
+gulp.task('build:webpack', ['build:webpack-make', 'build:webpack-copy'])
+
+gulp.task('build:html-dev', () => {
+  return gulp.src('src/html/index.dev.html')
+    .pipe(rename('index.html'))
+    .pipe(gulp.dest('dev/'))
+})
+
+gulp.task('build:html-dist', () => {
+  return gulp.src('src/html/index.dist.html')
+    .pipe(rename('index.html'))
     .pipe(gulp.dest('dist/'))
 })
 
-gulp.task('elm', ['webpack'], function(callback) {
+gulp.task('build:html', ['build:html-dev', 'build:html-dist'])
+
+gulp.task('build:elm-make', ['build:webpack'], (callback) => {
   var cmd = 'elm-make --yes src/elm/spa/App/App.elm --output=./dist/app.js'
   runCommand(cmd,(err, stderr, stdout) => {
-    if (err) {
-      console.log(' Error', err.stack)
-    }
+    var didError = false
     if (stderr) {
-      console.log(' Fail')
-      console.log(formatMessage(stderr))
+      didError = true
+      gutil.log(chalk.red('ERROR'), 'thrown by', 'elm-make:')
+      gutil.log(formatMessage(stderr))
     }
     if (stdout) {
-      console.log(' Built')
-      console.log(formatMessage(stdout))
+      var message = stdout.indexOf('error') === -1 ? chalk.green('Succeeded') : chalk.red('Failed')
+      gutil.log('elm-make', message)
       callback()
     }
   })
 })
 
-// Prod build task
-gulp.task('build', ['elm', 'html'], function(callback) { callback() })
+gulp.task('build:elm-copy', ['build:elm-make'], () => {
+  return gulp.src('dist/app.js')
+    .pipe(plumber())
+    .pipe(gulp.dest('dev/'))
+})
+
+gulp.task('build:elm', ['build:elm-make', 'build:elm-copy'])
+
+gulp.task('watch:html-dist', ['build:html-dist'], (callback) => {
+  return gulp.watch('src/html/index.dist.html', ['build:html-dist'])
+})
+
+gulp.task('watch:html-dev', ['build:html-dev'], (callback) => {
+  return gulp.watch('src/html/index.dev.html', ['build:html-dev'])
+})
+
+gulp.task('watch:html', ['watch:html-dist', 'watch:html-dev'])
+
+gulp.task('watch:elm', ['build:elm'], (callback) => {
+  return gulp.watch('src/elm/**/*.elm', ['build:elm'])
+})
 
 // Dev watch task
-gulp.task('watch', ['build'], function(callback) {
-modules.reduce(function(previous, module) {
-  return previous.then(function() {
-    var taskName = createTaskName(module.name)
-    return gulp.watch(module.watch, [taskName], [taskName])
-  })
-}, Promise.resolve())
-  .then(function() { callback() })
+gulp.task('watch:webpack', ['build:elm'], (callback) => {
+  modules.reduce((previous, module) => {
+    return previous.then(() => {
+      var taskName = createTaskName(module.name)
+      return gulp.watch(module.watch, [taskName], [taskName])
+    })
+  }, Promise.resolve())
+    .then(() => callback())
 })
+
+gulp.task('watch', ['watch:webpack', 'watch:elm', 'watch:html'])
+
+// Prod build task
+gulp.task('build', ['build:webpack', 'build:elm', 'build:html'])

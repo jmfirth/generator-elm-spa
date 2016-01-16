@@ -34,10 +34,7 @@ sitePage address site content =
   in
     div
       [ class "site" ]
-      [ stylesheet "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-      , stylesheet "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
-      , stylesheet "/dist/main.css"
-      , navbar
+      [ navbar
           address
           (div [] [ span [] [ text brand ] ])
           (navLinks site.view site.routerPayload)
@@ -69,13 +66,3 @@ pageView address site =
 
     _ ->
       EmptyView.view
-
-
-stylesheet : String -> Html.Html
-stylesheet href' =
-  node "link" [ rel "stylesheet", href href' ] []
-
-
-script : String -> Html.Html
-script src' =
-  node "script" [ src src' ] []

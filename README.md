@@ -1,12 +1,12 @@
 # generator-elm-spa
 
-> [Yeoman](http://yeoman.io) generator for [Elm](http://elm-lang.org/) SPA's
+>  A [`Yeoman`](http://yeoman.io) generator for single-page applications using the [`Elm`](http://elm-lang.org/) language.
 
-Scaffold an Elm SPA.
+ This generator scaffolds a single-page application (SPA) for [`Elm`](http://elm-lang.org/) following the best practices outlined in [The Elm Architecture](https://github.com/evancz/elm-architecture-tutorial/) guide while leveraging the fantastic [`Hop`](http://package.elm-lang.org/packages/sporto/hop/latest) router.  This generator features sub-generators to quickly scaffold additional Views and Components.  In addition, it provides modern developer and release tooling, including: [native module](https://github.com/NoRedInk/take-home/wiki/Writing-Native) development using [`Babel`](https://babeljs.io/) and [`Node.js`](https://nodejs.org) libraries via [`Webpack`](https://webpack.github.io/), automatic recompilation via [`Gulp`](http://gulpjs.com/), modern debugging via [`elm-reactor`](https://github.com/elm-lang/elm-reactor), and separate development and distribution builds.
 
 ## Status
 
-**Base SPA example:**
+**Base generator**
 
 - [x] Multiple views
 - [x] Smart and dumb components
@@ -15,19 +15,17 @@ Scaffold an Elm SPA.
 - [x] PostCSS/CSSNext style pre/postprocessor
 - [x] SourceMaps for native modules
 - [x] Watch tooling for native modules and styles via [`Gulp`](http://gulpjs.com/) and [`Webpack`](https://webpack.github.io/)
-- [x] Dev debugging via [`elm-reactor`](https://github.com/elm-lang/elm-reactor)
+- [x] ~~Hot swapping~~ ([broken in 0.16]()) and time travel debugging via [`elm-reactor`](https://github.com/elm-lang/elm-reactor)
 - [x] Tooling to build for distribution
-- [ ] Environment-specific configuration
+- [x] Environment-specific configuration
 
-Current distribution build does not correctly feed environment-specific configuration of main stylesheet URL.  This is needed to support the differences in stylesheet paths when developing via `elm-reactor` versus being built for distribution.
-
-**View:**
+**View sub-generator**
 
 - [x] Generates separate Actions, Models, Updates, and View source files
 - [x] Generated source placed in `src\elm\spa\App\Views` in it's own subfolder
 - [x] Generated View compiles
 
-**Component:**
+**Component sub-generator**
 
 - [x] Generates a single source file containing Actions, Models, Updates, and View
 - [x] Generated source placed in `src\elm\spa\App\Components`
@@ -51,7 +49,15 @@ Then start the generator:
 $ yo elm-spa
 ```
 
-## Generators
+Once the generator is complete you can run the web server:
+
+```sh
+$ npm run server
+```
+
+Then navigate to [`http://localhost:8000/dev/index.html`](http://localhost:8000/dev/index.html) for debugging using the `elm-reactor` debugger, or to [`http://localhost:8000/dist/index.html`](http://localhost:8000/dist/index.html) to view the final distribution.
+
+## Sub-generators
 
 In addition to the base SPA scaffolding, this generator also scaffolds views:
 
@@ -67,32 +73,29 @@ $ yo elm-spa:component MyComponent
 
 ## Tooling
 
-### Development
-
-Watch
-
-```sh
-$ npm run watch
-```
-
-Debug Server
-
-```sh
-$ npm run server
-```
-
-### Distribution
-
-Build
+Manually create development and distribution builds:
 
 ```sh
 $ npm run build
 ```
 
+Watch all source for changes and automatically recompile as necessary:
+
+```sh
+$ npm run watch
+```
+
+Run the `elm-reactor` web server:
+
+```sh
+$ npm run server
+```
+
 ## SPA Structure
 
 ```
-dist\                             - distribution folder
+dev\                              - development build output folder
+dist\                             - distribution build output folder
 elm-stuff\                        - Elm package and build folder
 node_modules\                     - NPM module folder
 src\                              - Source folder
@@ -129,7 +132,8 @@ src\                              - Source folder
           Update.elm              - App update method
           View.elm                - App's main view
    html\                          - HTML source folder
-      index.html                  - Index template for distribution
+      index.dev.html              - Index template for development build
+      index.dist.html             - Index template for distribution build
    js\                            - JavaScript source folder
       hello\                      - Hello example native module
          hello.js                 - Hello example's functional source
