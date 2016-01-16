@@ -1,6 +1,6 @@
 {
   "name": "generator-elm-spa",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A Yeoman generator for single-page applications using the Elm language.",
   "license": "MIT",
   "main": "generators/app/index.js",
@@ -8,6 +8,7 @@
     "generators"
   ],
   "repository": "https://github.com/jmfirth/generator-elm-spa",
+  "homepage": "https://github.com/jmfirth/generator-elm-spa#readme",
   "author": "Justin Firth <jmfirth@gmail.com>",
   "contributors":[],
   "scripts": {},
