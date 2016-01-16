@@ -40,7 +40,7 @@ $ npm install -g yo
 To install `generator-elm-spa` run:
 
 ```sh
-$ npm install -g jmfirth/generator-elm-spa
+$ npm install -g generator-elm-spa
 ```
 
 Then start the generator:
