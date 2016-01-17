@@ -99,8 +99,8 @@ $ npm run server
 ## SPA Structure
 
 ```
-dev/                              - development build output folder
-dist/                             - distribution build output folder
+dev/                              - Development build output folder
+dist/                             - Distribution build output folder
 elm-stuff/                        - Elm package and build folder
 node_modules/                     - NPM module folder
 src/                              - Source folder
