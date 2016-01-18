@@ -7,6 +7,10 @@
   "files": [
     "generators"
   ],
+  "engineStrict": true,
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "repository": "https://github.com/jmfirth/generator-elm-spa",
   "homepage": "https://github.com/jmfirth/generator-elm-spa#readme",
   "author": "Justin Firth <jmfirth@gmail.com>",
