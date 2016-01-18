@@ -8,12 +8,14 @@
     "watch": "gulp watch",
     "server": "elm-reactor"
   },
+  "engineStrict": true,
+  "engines": {
+    "node": ">=5.0.0"
+  },
   "browser": {
     "fs": false
   },
-  "dependencies": {
-    "babel-core": "^6.3.26"
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel": "^6.3.26",
     "babel-core": "^6.4.0",
