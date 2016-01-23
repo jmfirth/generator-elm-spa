@@ -31,11 +31,15 @@
 - [x] Generated source placed in `src/elm/spa/App/Components`
 - [x] Generated Component compiles
 
-## Getting Started
+## Prerequisites
+
+You will need [`Elm`](http://elm-lang.org/), [`Yeoman`](http://yeoman.io) and [`Gulp`](http://gulpjs.com/) installed globally (for *nix users, this may require `sudo`):
 
 ```sh
-$ npm install -g yo
+$ npm install -g elm yo gulp
 ```
+
+## Getting Started
 
 To install `generator-elm-spa` run:
 
@@ -49,7 +53,7 @@ Then start the generator:
 $ yo elm-spa
 ```
 
-Once the generator is complete you can run the web server:
+Once the generator is complete, run the web server:
 
 ```sh
 $ npm run server

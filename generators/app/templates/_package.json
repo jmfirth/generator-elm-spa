@@ -6,7 +6,8 @@
   "scripts": {
     "build": "gulp build",
     "watch": "gulp watch",
-    "server": "elm-reactor"
+    "server": "elm-reactor",
+    "postinstall": "elm-package install -y && elm-package install -y && elm-package install -y && gulp build"
   },
   "engineStrict": true,
   "engines": {

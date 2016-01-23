@@ -31,18 +31,18 @@ module.exports = yeoman.generators.Base.extend({
       name: 'appName',
       message: 'What do you want to name your app?',
       default: 'elm-spa',
-      store: true
+      store: false
     }, {
       name: 'appDescription',
       message: 'Give me a short description of your app:',
       default: '',
-      store: true
+      store: false
     }, {
       type: "confirm",
       name: "private",
       message: "Do you want this app to be private?",
       default: true,
-      store: true
+      store: false
     }];
 
     var self = this;
@@ -82,19 +82,7 @@ module.exports = yeoman.generators.Base.extend({
   install: function () {
     this.log(yosay('Installing Dependencies'))
 
-    var o = null
-
-    this.log(chalk.green('Installing npm dependencies...\n'))
-    o = spawn('npm install')
-    this.log(o.toString('utf8'))
-
-    this.log(chalk.green('Installing Elm dependencies...\n'))
-    o = spawn('elm-package install -y')
-    this.log(o.toString('utf8'))
-
-    this.log(chalk.green('Building project...\n'))
-    o = spawn('gulp build')
-    this.log(o.toString('utf8'))
+    this.npmInstall()
   },
   /**
    * @param {Array|Object} filesArray
