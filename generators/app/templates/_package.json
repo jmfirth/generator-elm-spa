@@ -16,8 +16,7 @@
   "browser": {
     "fs": false
   },
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "babel": "^6.3.26",
     "babel-core": "^6.4.0",
     "babel-loader": "^6.2.0",
@@ -44,5 +43,6 @@
     "style-loader": "^0.13.0",
     "webpack": "^1.12.10",
     "wordwrap": "^1.0.0"
-  }
+  },
+  "devDependencies": {}
 }
