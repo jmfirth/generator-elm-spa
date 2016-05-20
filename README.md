@@ -6,6 +6,8 @@
 
 ## Status
 
+# Warning: This generator has not been updated since the Elm 0.17 release.
+
 **Base generator**
 
 - [x] Multiple views
